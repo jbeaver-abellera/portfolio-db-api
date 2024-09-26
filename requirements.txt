@@ -1,0 +1,6 @@
+logging
+psycopg2-binary
+# json
+boto3
+datetime
+pytz
