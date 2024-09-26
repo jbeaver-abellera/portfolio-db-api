@@ -35,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: example-artifact
-          path: output/hello.txt
+          path: lambda_function.zip
