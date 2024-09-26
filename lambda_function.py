@@ -48,10 +48,10 @@ def get_timestamp():
 try:
     conn = psycopg2.connect(host=rds_host, user=user_name, password=password, dbname=db_name, port=rds_port)
 
-    # ------------ Testing Only ------------------ #
-    event, context = '', ''
-    lambda_handler(event=event, context=context)
-    # -------------------------------------------- #
+    # # ------------ Testing Only ------------------ #
+    # event, context = '', ''
+    # lambda_handler(event=event, context=context)
+    # # -------------------------------------------- #
     
 except psycopg2.Error as e:
     logger.error("Unexpected error: Could not connect to Postgres instance.")
