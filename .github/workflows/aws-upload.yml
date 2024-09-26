@@ -17,10 +17,6 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
       - name: Zip Lambda function
         run: zip -r lambda_function.zip lambda_function.py myvenv/Lib/site-packages
 
@@ -33,4 +29,4 @@ jobs:
 
       - name: Deploy to Lambda
         run: |
-          aws lambda update-function-code --function-name lambda_function --zip-file fileb://lambda_function.zip
+          aws lambda update-function-code --function-name portfolio-postgres-api --zip-file fileb://lambda_function.zip
