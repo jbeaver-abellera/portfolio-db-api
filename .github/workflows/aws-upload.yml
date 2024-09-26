@@ -30,3 +30,9 @@ jobs:
       - name: Deploy to Lambda
         run: |
           aws lambda update-function-code --function-name portfolio-postgres-api --zip-file fileb://lambda_function.zip
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: example-artifact
+          path: output/hello.txt
