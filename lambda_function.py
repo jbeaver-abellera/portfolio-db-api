@@ -49,13 +49,14 @@ def lambda_handler(event, context):
         cur.execute(f"SELECT * FROM {table_name} ORDER BY id DESC LIMIT 1")
         logger.info("The following items have been found in the db.")
         last_row = cur.fetchone() #also the last row
+        count = last_row[1]
         row_id = last_row[0]
         new_count = last_row[1] + 1
         timestamp = get_timestamp()
         
         
         #TO DO: create a new row with updated view and timestamp.
-        cur.execute(f"UPDATE {table_name} SET views={new_count}, timestamp=\'{timestamp}\' WHERE id={row_id}")
+        cur.execute(f"INSERT INTO {table_name} (id, views, timestamp) VALUES (\'{row_id +1}\', \'{new_count}\', \'{timestamp}\')")
         cur.close()
         
     conn.commit()
