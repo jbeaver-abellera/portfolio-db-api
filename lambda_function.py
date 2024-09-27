@@ -62,12 +62,21 @@ def lambda_handler(event, context):
     conn.commit()
             
     logger.info(f"New View Count: {new_count}")
-    return count
+    return get_json(count)
 
 def get_timestamp():
     tz = pytz.timezone('Asia/Singapore')
     return datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S %z")
 
+def get_json(count):
+    """Retrieve JSON from server."""
+    # Business Logic Goes Here.
+    response = {
+        "statusCode": 200,
+        "headers": {},
+        "body": count
+    }
+    return response
 
 # # ------------ Testing Only ------------------ #
 # event, context = '', ''
