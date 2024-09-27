@@ -62,7 +62,10 @@ def lambda_handler(event, context):
     conn.commit()
             
     logger.info(f"New View Count: {new_count}")
-    return get_json(count)
+    return {
+        'statusCode': 200,
+        'body': json.dumps(f'{count}')
+    }
 
 def get_timestamp():
     tz = pytz.timezone('Asia/Singapore')
