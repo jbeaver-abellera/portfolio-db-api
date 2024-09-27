@@ -28,7 +28,7 @@ jobs:
           zip -r ../my_deployment_package.zip .
           cd ..
           zip my_deployment_package.zip lambda_function.py
-          zip -r my_deployment_package.zip ./psycopg2 ./psycopg2_binary-2.9.9.dist-info ./psycopg2_binary.libs
+          zip -r my_deployment_package.zip ./pscycopg2-packages/psycopg2 ./pscycopg2-packages/psycopg2_binary-2.9.9.dist-info ./pscycopg2-packages/psycopg2_binary.libs
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
