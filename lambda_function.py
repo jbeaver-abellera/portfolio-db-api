@@ -13,6 +13,20 @@ rds_host = os.environ['RDS_HOST']
 rds_port = os.environ['RDS_PORT']
 db_name = os.environ['DB_NAME']
 
+try:
+    conn = psycopg2.connect(host=rds_host, user=user_name, password=password, dbname=db_name, port=rds_port)
+
+    # # ------------ Testing Only ------------------ #
+    # event, context = '', ''
+    # lambda_handler(event=event, context=context)
+    # # -------------------------------------------- #
+    
+except psycopg2.Error as e:
+    logger.error("Unexpected error: Could not connect to Postgres instance.")
+    logger.error(e)
+    sys.exit
+
+logger.info("Success: Connection to RDS Postgres successful!")
     
 def lambda_handler(event, context):
     items = []
@@ -45,17 +59,3 @@ def get_timestamp():
     return datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S %z")
 
 
-try:
-    conn = psycopg2.connect(host=rds_host, user=user_name, password=password, dbname=db_name, port=rds_port)
-
-    # # ------------ Testing Only ------------------ #
-    # event, context = '', ''
-    # lambda_handler(event=event, context=context)
-    # # -------------------------------------------- #
-    
-except psycopg2.Error as e:
-    logger.error("Unexpected error: Could not connect to Postgres instance.")
-    logger.error(e)
-    sys.exit
-
-logger.info("Success: Connection to RDS Postgres successful!")
