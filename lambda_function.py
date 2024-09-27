@@ -62,7 +62,7 @@ def lambda_handler(event, context):
     conn.commit()
             
     logger.info(f"New View Count: {new_count}")
-    return items
+    return count
 
 def get_timestamp():
     tz = pytz.timezone('Asia/Singapore')
