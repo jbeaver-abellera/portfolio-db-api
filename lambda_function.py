@@ -68,7 +68,7 @@ def get_timestamp():
     return datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S %z")
 
 
-# ------------ Testing Only ------------------ #
-event, context = '', ''
-lambda_handler(event=event, context=context)
-# -------------------------------------------- #
+# # ------------ Testing Only ------------------ #
+# event, context = '', ''
+# lambda_handler(event=event, context=context)
+# # -------------------------------------------- #
