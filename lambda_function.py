@@ -48,9 +48,7 @@ def lambda_handler(event, context):
         cur.close()
         
     conn.commit()
-    # Close the cursor and connection
-    conn.close()
-        
+            
     logger.info(f"New View Count: {new_count}")
     return items
 
