@@ -32,6 +32,17 @@ def lambda_handler(event, context):
     items = []
     # item_count = 0
     
+    
+    try:
+        conn = psycopg2.connect(host=rds_host, user=user_name, password=password, dbname=db_name, port=rds_port)
+
+    except psycopg2.Error as e:
+        logger.error("Unexpected error: Could not connect to Postgres instance.")
+        logger.error(e)
+        sys.exit(1)
+
+    logger.info("Success: Connection to RDS Postgres successful!")
+    
     with conn.cursor() as cur:
         table_name = 'view_counter'
         #TO DO: get last data from table, as it is the latest timestamp
@@ -57,3 +68,7 @@ def get_timestamp():
     return datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S %z")
 
 
+# ------------ Testing Only ------------------ #
+event, context = '', ''
+lambda_handler(event=event, context=context)
+# -------------------------------------------- #
